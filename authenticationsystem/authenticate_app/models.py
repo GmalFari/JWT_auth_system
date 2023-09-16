@@ -130,6 +130,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(UserAccount, on_delete=models.CASCADE)
     slug = models.SlugField(unique=True, blank=True, null=True)
     name= models.CharField(max_length=255,blank=True,null=True)
+    email= models.CharField(max_length=200,null=True,blank=True)
     coverPhoto = models.ImageField(upload_to=path_file_name,null=True,blank=True)
 
     # rating = models.IntegerField(blank=True)
