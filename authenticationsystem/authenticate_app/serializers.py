@@ -1,6 +1,9 @@
 from rest_framework import serializers
 from django.core.exceptions import ValidationError
 from .models import UserAccount,UserProfile
+from django.contrib.auth.hashers import make_password
+
+
 
 
 class UserAccountSerializer(serializers.ModelSerializer):
@@ -47,8 +50,15 @@ class UserAccountSerializer(serializers.ModelSerializer):
       UserProfile.objects.create(user=instance, name=f'{instance.first_name}', email=instance.email)
       return instance
     def update(self, instance, validated_data):
+        # Update simple fields
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
+
+        # Update password field if provided
+        password = validated_data.get('password')
+        if password:
+            instance.password = make_password(password)
+
         instance.save()
         return instance
     
