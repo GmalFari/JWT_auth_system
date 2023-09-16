@@ -109,8 +109,7 @@ placeholders with the actual values corresponding to your setup.
 
 ---
 
-   Follow the installation guide provided in the `installation.rst` file to set up the project environment and dependencies.
-
+   
 2. Custom User Model
 
    ---
